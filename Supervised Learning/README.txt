@@ -17,6 +17,3 @@ To run:
 
 Select a different Dataset:
 in the second cell change "data_selection" field to 0 to run Wine Quality Dataset, and 1 to run Breast Cancer Dataset
-
-
-CHECK FOR ERROR len(y)=4?
