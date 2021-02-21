@@ -13,7 +13,11 @@ Libraries required to run the code:
 scikit-learn, numpy, pandas, matplotlib
 To run:
 1. open Supervised_Learning.ipynb in Jupyter Notebook
-2. Hit Kernel > Restart & Run All
+2. Press Kernel > Restart & Run All
 
-### Select a different Dataset:
-in the second cell change **data_selection** field to 0 to run Wine Quality Dataset, and 1 to run Breast Cancer Dataset
+## Select a different Dataset:
+In the second cell change **data_selection** field to 0 to run Wine Quality Dataset, and 1 to run Breast Cancer Dataset
+
+#### Folders
+1. **data** folder contains all datasets required for the project
+2. **img** folder contians all imgaes of all the prolts produced by the code
