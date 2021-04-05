@@ -17,10 +17,11 @@ All code was written in Jupyter Notebook
 4. ICA.ipynb - this notebook contains the code to run ICA with both clustering algorithms and a Neural Network and both datasets.
 5. RP.ipynb - this notebook contains the code to run RP with both clustering algorithms and a Neural Network and both datasets.
 6. FA.ipynb - this notebook contains the code to run FA with both clustering algorithms and a Neural Network and both datasets.
+
 Libraries required to run the code:
 scikit-learn, numpy, pandas, matplotlib
 ## Running the code:
-1. Open the notebook in Jupyter Notebook, press kernel tab > restart & Run All
+1. Open the notebook in Jupyter Notebook, press Kernel tab > Restart & Run All
 2. This will print all the required plots for the project.
 3. The code only runs 1 dataset at a time, to switch between the dataset change the dataset_select integer the second cell of the notebook to 0 for wine dataset and 1 for cancer dataset
 ## Datasets:
