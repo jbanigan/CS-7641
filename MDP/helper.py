@@ -4,8 +4,8 @@ from gym import wrappers
 import time
 import matplotlib.pyplot as plt
 
-#env_name  = 'FrozenLake-v0'
-#env = gym.make(env_name)
+# Source: https://github.com/llSourcell/AI_for_video_games_demo/blob/master/policy_iteration_demo.py
+
 def run_episode(env, policy, gamma, render = True):
     obs = env.reset()
     total_reward = 0
@@ -49,7 +49,7 @@ def compute_policy_v(env, policy, gamma=1.0):
 
 def policy_iteration(env, gamma):
     policy = np.random.choice(env.nA, size=(env.nS))
-    max_iterations = 200000
+    max_iterations = 10
     for i in range(max_iterations):
         old_policy_v = compute_policy_v(env, policy, gamma)
         new_policy = extract_policy(env, old_policy_v, gamma)
@@ -62,7 +62,7 @@ def policy_iteration(env, gamma):
 
 def value_iteration(env, gamma):
     v = np.zeros(env.nS)  
-    max_iterations = 100000
+    max_iterations = 1000
     eps = 1e-20
     for i in range(max_iterations):
         prev_v = np.copy(v)
@@ -75,3 +75,12 @@ def value_iteration(env, gamma):
             print ('Value-iteration converged at iteration# %d.' %(i+1))
             break
     return v,k
+def plots(gamma, array, ylabel, title):
+    plt.plot(gamma, array, color='b')
+    plt.xticks(gamma)
+    #plt.yticks(np.unique(array))
+    plt.xlabel('Gamma')
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.grid()
+    plt.show()
