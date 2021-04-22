@@ -1,8 +1,11 @@
 import numpy as np
+import pandas as pd
 import gym
 from gym import wrappers
 import time
 import matplotlib.pyplot as plt
+from collections import namedtuple
+
 
 # Source: https://github.com/llSourcell/AI_for_video_games_demo/blob/master/policy_iteration_demo.py
 
@@ -75,12 +78,30 @@ def value_iteration(env, gamma):
             print ('Value-iteration converged at iteration# %d.' %(i+1))
             break
     return v,k
-def plots(gamma, array, ylabel, title):
+'''def plots(gamma, array, ylabel, title):
     plt.plot(gamma, array, color='b')
     plt.xticks(gamma)
     #plt.yticks(np.unique(array))
     plt.xlabel('Gamma')
     plt.ylabel(ylabel)
     plt.title(title)
+    plt.grid()
+    plt.show()'''
+
+EpisodeStats = namedtuple("Stats",["iters", "rewards"])
+    
+def plot_rewards(rewards, title, ylabel):
+    plt.plot(rewards, color='r')
+    plt.title(title)
+    plt.ylabel(ylabel)
+    plt.xlabel('Number of Episodes')
+    plt.grid()
+    plt.show()
+    
+def plot_iters(iters, title, ylabel):
+    plt.plot(iters, color='r')
+    plt.title(title)
+    plt.ylabel(ylabel)
+    plt.xlabel('Number of Episodes')
     plt.grid()
     plt.show()
