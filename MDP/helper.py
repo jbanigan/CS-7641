@@ -53,6 +53,7 @@ def compute_policy_v(env, policy, gamma=1.0):
 def policy_iteration(env, gamma):
     policy = np.random.choice(env.nA, size=(env.nS))
     max_iterations = 10
+    k=0
     for i in range(max_iterations):
         old_policy_v = compute_policy_v(env, policy, gamma)
         new_policy = extract_policy(env, old_policy_v, gamma)
@@ -88,7 +89,15 @@ def value_iteration(env, gamma):
     plt.grid()
     plt.show()'''
 
-EpisodeStats = namedtuple("Stats",["iters", "rewards"])
+def plots(gammas, array, yaxis, title):
+    plt.plot(gammas, array, color='r')
+    plt.xticks(gammas)
+    plt.title(title)
+    plt.ylabel(yaxis)
+    plt.xlabel('Gammas')
+    plt.grid()
+    plt.savefig('img/'+title+'.png')
+    plt.show()
     
 def plot_rewards(rewards, title, ylabel):
     plt.plot(rewards, color='r')
@@ -96,6 +105,7 @@ def plot_rewards(rewards, title, ylabel):
     plt.ylabel(ylabel)
     plt.xlabel('Number of Episodes')
     plt.grid()
+    plt.savefig('img/'+title+'.png')
     plt.show()
     
 def plot_iters(iters, title, ylabel):
@@ -104,4 +114,5 @@ def plot_iters(iters, title, ylabel):
     plt.ylabel(ylabel)
     plt.xlabel('Number of Episodes')
     plt.grid()
+    plt.savefig('img/'+title+'.png')
     plt.show()
