@@ -5,7 +5,7 @@ from gym import wrappers
 import time
 import matplotlib.pyplot as plt
 from collections import namedtuple
-
+np.random.seed(420)
 
 # Source: https://github.com/llSourcell/AI_for_video_games_demo/blob/master/policy_iteration_demo.py
 
@@ -46,23 +46,21 @@ def compute_policy_v(env, policy, gamma=1.0):
             policy_a = policy[s]
             v[s] = sum([p * (r + gamma * prev_v[s_]) for p, s_, r, is_done in env.P[s][policy_a]])
         if (np.sum((np.fabs(prev_v - v))) <= eps):
-            # value converged
             break
     return v
 
 def policy_iteration(env, gamma):
     policy = np.random.choice(env.nA, size=(env.nS))
-    max_iterations = 10
-    k=0
+    max_iterations = 1000
     for i in range(max_iterations):
         old_policy_v = compute_policy_v(env, policy, gamma)
         new_policy = extract_policy(env, old_policy_v, gamma)
         if (np.all(policy == new_policy)):
-            k=i+1
-            print ('Policy-Iteration converged at step %d.' %(i+1))
+            iters=i+1
+            print ('PI converged at: %d' %(i+1))
             break
         policy = new_policy
-    return policy,k
+    return policy, iters
 
 def value_iteration(env, gamma):
     v = np.zeros(env.nS)  
@@ -73,21 +71,12 @@ def value_iteration(env, gamma):
         for s in range(env.nS):
             q_sa = [sum([p*(r + gamma*prev_v[s_]) for p, s_, r, _ in env.P[s][a]]) for a in range(env.nA)] 
             v[s] = max(q_sa)
-        #print(np.sum(np.fabs(prev_v - v)))
         if (np.sum(np.fabs(prev_v - v)) <= eps):
-            k=i+1
-            print ('Value-iteration converged at iteration# %d.' %(i+1))
+            iters=i+1
+            print ('VI converged at: %d' %(i+1))
             break
-    return v,k
-'''def plots(gamma, array, ylabel, title):
-    plt.plot(gamma, array, color='b')
-    plt.xticks(gamma)
-    #plt.yticks(np.unique(array))
-    plt.xlabel('Gamma')
-    plt.ylabel(ylabel)
-    plt.title(title)
-    plt.grid()
-    plt.show()'''
+    return v,iters
+
 
 def plots(gammas, array, yaxis, title):
     plt.plot(gammas, array, color='r')
